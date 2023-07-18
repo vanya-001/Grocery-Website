@@ -67,7 +67,7 @@ const Signup = () => {
 
           const resData = await fetchData.json()
           console.log(resData)
-          alert("successfull")
+          alert(resData.message)
           // navigate('/login')
         }
         else{
