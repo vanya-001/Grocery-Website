@@ -2,6 +2,8 @@ import React, {useState} from 'react'
 import SignupImage from '../image/Login.png'
 import {BiShowAlt, BiHide} from 'react-icons/bi'
 import { Link } from 'react-router-dom'
+import toast from 'react-hot-toast'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false)
@@ -9,6 +11,7 @@ const Login = () => {
         email : "",
         password : ""
     })
+    const navigate = useNavigate()
     // console.log(data);
 
     const handleShowPassword = ()=>{
@@ -40,6 +43,13 @@ const Login = () => {
 
         const resData = await fetchData.json()
         console.log(resData)
+        toast(resData.message)
+        if(resData.alert){
+          navigate('/')
+        }
+        else{
+          navigate('/signup')
+        }
       }
       else{
         alert("Please Enter required fields")
