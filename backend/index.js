@@ -50,12 +50,12 @@ app.post("/signup", async(req, res)=>{
         console.log(result)
 
         if(result){
-            res.send({message : "Email id is already registered"})
+            res.send({message : "Email id is already registered", alert : false})
         }
         else{
             const data = userModel(req.body)
             const save = await data.save()
-            res.send({message : "Successfully signed up"})
+            res.send({message : "Successfully signed up", alert: true})
         }
     }
     catch(err){

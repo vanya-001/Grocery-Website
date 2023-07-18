@@ -3,6 +3,7 @@ import SignupImage from '../image/Login.png'
 import {BiShowAlt, BiHide} from 'react-icons/bi'
 import { Link, useNavigate } from 'react-router-dom'
 import ImagetoBase64 from '../utility/ImagetoBase64'
+import toast from 'react-hot-toast'
 
 const Signup = () => {
 
@@ -67,7 +68,8 @@ const Signup = () => {
 
           const resData = await fetchData.json()
           console.log(resData)
-          alert(resData.message)
+          // alert(resData.message)
+          toast(resData.message)
           // navigate('/login')
         }
         else{
