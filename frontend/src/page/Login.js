@@ -6,11 +6,8 @@ import { Link } from 'react-router-dom'
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false)
     const [data, setData] = useState({
-        firstName : "",
-        lastName : "",
         email : "",
-        password : "",
-        confirmPassword : "",
+        password : ""
     })
     // console.log(data);
 
@@ -28,12 +25,21 @@ const Login = () => {
       })
     }
 
-    const handleSubmit = (e)=>{
+    const handleSubmit = async(e)=>{
       e.preventDefault()
 
       const {email, password} = data
       if(email && password){
-        alert("successfull")
+        const fetchData = await fetch(`${process.env.REACT_APP_SERVER_DOMAIN}/login` , {
+          method: "POST",
+          headers :{
+            "content-type" : "application/json"
+          },
+          body : JSON.stringify(data)
+        })
+
+        const resData = await fetchData.json()
+        console.log(resData)
       }
       else{
         alert("Please Enter required fields")

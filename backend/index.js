@@ -39,6 +39,7 @@ app.get("/" , (req, res) =>{
     res.send("Server is running")
 })
 
+//signup api
 app.post("/signup", async(req, res)=>{
     console.log(req.body)
     const {email} = req.body
@@ -56,6 +57,32 @@ app.post("/signup", async(req, res)=>{
             const data = userModel(req.body)
             const save = await data.save()
             res.send({message : "Successfully signed up", alert: true})
+        }
+    }
+    catch(err){
+        console.log(err)
+    }
+})
+
+// api login
+app.post("/login", async(req, res) =>{
+    console.log(req.body)
+    const {email} = req.body 
+    try{
+    const result = await userModel.findOne({email : email})
+        if(result){
+            const dataSend = {
+                _id: result._id,
+                firstName: result.firstName,
+                lastName: result.lastName,
+                email: result.email,
+                image: result.image,
+            }
+            console.log(dataSend)
+            res.send({message : "Successfuly Logged In" , alert : true, data : dataSend})
+        }
+        else{
+            res.send({message : "Email not Registered! Please Sign up." , alert : false})
         }
     }
     catch(err){
