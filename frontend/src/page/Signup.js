@@ -70,7 +70,13 @@ const Signup = () => {
           console.log(resData)
           // alert(resData.message)
           toast(resData.message)
-          // navigate('/login')
+          if(resData.alert){
+            navigate('/')
+          }
+          else{
+            navigate('/login')
+          }
+          
         }
         else{
           alert("Password and Confirm Password are not equal")
