@@ -5,7 +5,7 @@ const initialState = {
     firstName : "",
     lastName : "",
     image : "",
-    _id : ""
+    _id : "",
 }
 
 export const userSlice = createSlice({
@@ -19,10 +19,17 @@ export const userSlice = createSlice({
             state.lastName = action.payload.data.lastName
             state.email = action.payload.data.email
             state.image = action.payload.data.image
+        },
+        logoutRedux : (state,action) => {
+            state._id = ""
+            state.firstName = ""
+            state.lastName = ""
+            state.email = ""
+            state.image = ""
         }
     }
 })
 
-export const {loginRedux} = userSlice.actions
+export const {loginRedux, logoutRedux} = userSlice.actions
 
 export default userSlice.reducer
