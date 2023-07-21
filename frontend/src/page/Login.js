@@ -4,6 +4,8 @@ import {BiShowAlt, BiHide} from 'react-icons/bi'
 import { Link } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
+import {useDispatch, useSelector} from "react-redux"
+import { loginRedux } from '../redux/userSlice'
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false)
@@ -13,6 +15,11 @@ const Login = () => {
     })
     const navigate = useNavigate()
     // console.log(data);
+
+    const userData = useSelector(state => state)
+    
+
+    const dispatch = useDispatch()
 
     const handleShowPassword = ()=>{
         setShowPassword(preve => !preve)
@@ -43,13 +50,16 @@ const Login = () => {
 
         const resData = await fetchData.json()
         console.log(resData)
-        toast(resData.message)
+        
+        toast(userData.user.firstName + resData.message)
         if(resData.alert){
+          dispatch(loginRedux(resData))
           navigate('/')
         }
         else{
           navigate('/signup')
         }
+        console.log(userData)
       }
       else{
         alert("Please Enter required fields")
