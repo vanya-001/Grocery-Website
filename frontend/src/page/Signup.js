@@ -95,10 +95,12 @@ const Signup = () => {
 
         <div className='w-20 h-20 overflow-hidden drop-shadow-md shadow-md m-auto relative'>
             <img src={data.image ? data.image : SignupImage} className='w-full h-full object-cover' /> 
+
             <label htmlFor='profileImage'>
             <div className='absolute bottom-0 h-1/3 bg-slate-500 bg-opacity-60  text-white w-full text-center'>
               <p className='text-sm p-1 cursor-pointer'>Upload</p>  
             </div>
+            
             <input type={"file"} id='profileImage' accept="image/*" className='hidden' onChange={handleUploadProfileImage} />
             </label>        
         </div>
