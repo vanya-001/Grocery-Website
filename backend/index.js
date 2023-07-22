@@ -90,4 +90,25 @@ app.post("/login", async(req, res) =>{
     }
 })
 
+// product section
+const productSchema = mongoose.Schema({
+    name : String,
+    category : String,
+    image : String,
+    price : Number,
+    description : String,
+})
+
+const productModel = mongoose.model("product", productSchema)
+
+// save product in database
+// api
+app.post("/uploadProduct", async(req, res) =>{
+    console.log(req.body)
+    const data = await productModel(req.body)
+    const dataSave = await data.save()
+
+    res.send({message : "Added"})
+})
+
 app.listen(PORT, () => console.log("Server is running at port : " + PORT))
