@@ -83,13 +83,14 @@ const NewProduct = () => {
           <option value="fruit">Fruit</option>
           <option value="vegetable">Vegetable</option>
           <option value="cereal">Cereal</option>
+          <option value="pulses">Pulses</option>
           <option value="dietfood">Diet Food</option>
           <option value="beverages">Beverages</option>
           <option value="rice">Rice</option>
         </select>
 
         <label htmlFor='image'>Image
-        <div className='h-40 w-full bg-green-200 rounded flex items-center justify-center cursor-pointer object-cover'>
+        <div className='h-full w-full bg-green-200 rounded flex items-center justify-center cursor-pointer'>
           {
             data.image ? <img src={data.image} className='h-full w-full rounded'/> : <span className='text-8xl'><BsCloudUpload/></span>
           }
