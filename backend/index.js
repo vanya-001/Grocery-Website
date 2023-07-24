@@ -111,4 +111,10 @@ app.post("/uploadProduct", async(req, res) =>{
     res.send({message : "Added"})
 })
 
+// 
+app.get("/product", async(req, res) =>{
+    const data = await productModel.find({})
+    res.send(JSON.stringify(data))
+})
+
 app.listen(PORT, () => console.log("Server is running at port : " + PORT))
