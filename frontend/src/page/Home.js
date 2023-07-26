@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import HomeCart from '../component/HomeCart'
 import { useSelector } from 'react-redux'
 import CartFeature from '../component/CartFeature'
@@ -14,6 +14,15 @@ const Home = () => {
 
   const loadingArray = new Array(6).fill(null)
   const loadingArrayFeature = new Array(10).fill(null)
+
+  const slideProductRef = useRef()
+  const nextProduct =()=>{
+    slideProductRef.current.scrollLeft += 925
+  }
+
+  const previousProduct =()=>{
+    slideProductRef.current.scrollLeft -= 925
+  }
 
   return (
     <div className='p-2 md:p-4'>
@@ -60,11 +69,11 @@ const Home = () => {
           <h2 className='font-bold text-2xl text-green-700 mb-4'>Fresh Vegetables</h2>
         
           <div className= 'ml-auto flex gap-4 mb-2'>
-            <button className='bg-slate-300 hover:bg-slate-400 text-xl p-2 rounded '><GrFormPrevious /></button>
-            <button className='bg-slate-300 hover:bg-slate-400 text-xl p-2 rounded'><GrFormNext /></button>
+            <button onClick={previousProduct} className='bg-slate-300 hover:bg-slate-400 text-xl p-2 rounded '><GrFormPrevious /></button>
+            <button onClick={nextProduct} className='bg-slate-300 hover:bg-slate-400 text-xl p-2 rounded'><GrFormNext /></button>
           </div>
         </div>
-        <div className='flex gap-5 overflow-scroll scrollbar-none'>
+        <div ref={slideProductRef} className='flex gap-5 overflow-scroll scrollbar-none scroll-smooth transition-all'>
             {
               homeProductCartListVegetable[0] ? homeProductCartListVegetable.map(el => {
                 return(
