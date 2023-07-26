@@ -35,7 +35,7 @@ const Header = () => {
         </Link>
 
         <div className="flex item-center gap-4 md:gap-7">
-          <nav className="flex gap-4 md:gap-7 text-base md:text-lg md:flex">
+          <nav className="flex gap-4 md:gap-7 text-base md:text-lg md:flex hidden">
             <Link to={""}>Home</Link>
             <Link to={"menu"}>Menu</Link>
             <Link to={"about"}>About</Link>
@@ -58,7 +58,13 @@ const Header = () => {
                 }
                 {
                   userData.image ? <p className="cursor-pointer text-white px-2 bg-green-500" onClick={handleLogout}>Logout ({userData.firstName}) </p> : <Link to={'login'} className="whitespace-nowrap cursor-pointer text-white px-2 bg-green-500">Login</Link>
-                }                
+                } 
+                <nav className="flex text-base md:text-lg flex-col md:hidden">
+                  <Link to={""} className="px-2 py-1 ">Home</Link>
+                  <Link to={"menu"} className="px-2 py-1 ">Menu</Link>
+                  <Link to={"about"} className="px-2 py-1 ">About</Link>
+                  <Link to={"contact"} className="px-2 py-1 ">Contact</Link>
+              </nav>               
               </div>
             )}
           </div>

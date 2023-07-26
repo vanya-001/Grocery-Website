@@ -91,6 +91,16 @@ const Home = () => {
             }
           </div>
         </div>
+
+        <div className='my-5'>
+          <h2 className='font-bold text-2xl text-green-700 mb-4'>Fresh Your Product</h2>
+
+          <div className=''>
+            <div className=''>
+              
+            </div>
+          </div>
+        </div>
     </div>
   )
 }
