@@ -2,6 +2,7 @@ import React from 'react'
 import HomeCart from '../component/HomeCart'
 import { useSelector } from 'react-redux'
 import CartFeature from '../component/CartFeature'
+import {GrFormNext, GrFormPrevious} from 'react-icons/gr'
 
 const Home = () => {
   const productData = useSelector((state)=>state.product.productList)
@@ -11,7 +12,8 @@ const Home = () => {
   const homeProductCartListVegetable = productData.filter(el => el.category === "vegetable")
   console.log(homeProductCartListVegetable)
 
-  const loadingArray = new Array(4).fill(null)
+  const loadingArray = new Array(6).fill(null)
+  const loadingArrayFeature = new Array(10).fill(null)
 
   return (
     <div className='p-2 md:p-4'>
@@ -54,10 +56,17 @@ const Home = () => {
         </div>
       </div>
       <div className=''>
-          <h2 className='font-bold text-2xl text-green-700'>Fresh Vegetables</h2>
-          <div className='flex gap-5'>
+        <div className='flex w-full items-center justify-between'>
+          <h2 className='font-bold text-2xl text-green-700 mb-4'>Fresh Vegetables</h2>
+        
+          <div className= 'ml-auto flex gap-4 mb-2'>
+            <button className='bg-slate-300 hover:bg-slate-400 text-xl p-2 rounded '><GrFormPrevious /></button>
+            <button className='bg-slate-300 hover:bg-slate-400 text-xl p-2 rounded'><GrFormNext /></button>
+          </div>
+        </div>
+        <div className='flex gap-5 overflow-scroll scrollbar-none'>
             {
-              homeProductCartListVegetable.map(el => {
+              homeProductCartListVegetable[0] ? homeProductCartListVegetable.map(el => {
                 return(
                   <CartFeature
                     key = {el._id}
@@ -68,6 +77,8 @@ const Home = () => {
                   />
                 )
               })
+              :
+              loadingArrayFeature.map(el =><CartFeature  loading="loading..."/>)              
             }
           </div>
         </div>
