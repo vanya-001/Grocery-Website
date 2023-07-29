@@ -1,8 +1,9 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import HomeCart from '../component/HomeCart'
 import { useSelector } from 'react-redux'
 import CartFeature from '../component/CartFeature'
 import {GrFormNext, GrFormPrevious} from 'react-icons/gr'
+import FilterProduct from '../component/FilterProduct'
 
 const Home = () => {
   const productData = useSelector((state)=>state.product.productList)
@@ -22,6 +23,26 @@ const Home = () => {
 
   const previousProduct =()=>{
     slideProductRef.current.scrollLeft -= 925
+  }
+
+  const categoryList = [...new Set(productData.map(el => el.category))]
+  console.log(categoryList) 
+
+  //filter data
+  const [filterBy, setFilterBy] = useState("")
+  const [dataFilter, setDataFilter] = useState([])
+
+  useEffect(()=>{
+    setDataFilter(productData)
+  },[productData])
+
+  const handleFilterProduct = (category) =>{
+    const filter = productData.filter(el => el.category.toLowerCase() === category.toLowerCase())
+    setDataFilter(() =>{
+      return[
+        ...filter
+      ]
+    })
   }
 
   return (
@@ -95,10 +116,29 @@ const Home = () => {
         <div className='my-5'>
           <h2 className='font-bold text-2xl text-green-700 mb-4'>Fresh Your Product</h2>
 
-          <div className=''>
-            <div className=''>
-              
-            </div>
+          <div className='flex gap-4 justify-center overflow-scroll scrollbar-none cursor-pointer'>
+            {
+              categoryList[0] && categoryList.map(el => {
+                return(
+                  <FilterProduct category={el} onClick={()=> handleFilterProduct(el)} />
+                )
+              })
+            }
+          </div>
+          <div className='flex flex-wrap justify-center gap-4 my-4'>
+            {
+              dataFilter.map(el => {
+                return(
+                  <CartFeature 
+                    key = {el._id}
+                    image = {el.image}
+                    name = {el.name}
+                    category= {el.category}
+                    price= {el.price}
+                  />
+                )
+              })
+            }
           </div>
         </div>
     </div>
