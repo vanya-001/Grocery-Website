@@ -8,6 +8,8 @@ const AllProduct = ({heading}) => {
 
   const categoryList = [...new Set(productData.map(el => el.category))]
 
+  const loadingArrayFeature = new Array(10).fill(null)
+
      //filter data
   const [filterBy, setFilterBy] = useState("")
   const [dataFilter, setDataFilter] = useState([])
@@ -31,16 +33,20 @@ const AllProduct = ({heading}) => {
 
           <div className='flex gap-4 justify-center overflow-scroll scrollbar-none cursor-pointer'>
             {
-              categoryList[0] && categoryList.map(el => {
+              categoryList[0] ? categoryList.map(el => {
                 return(
                   <FilterProduct category={el} onClick={()=> handleFilterProduct(el)} />
                 )
               })
+              :
+              <div className='min-h-[150px] flex justify-center items-center'>
+                <p>Loading...</p>
+              </div>
             }
           </div>
           <div className='flex flex-wrap justify-center gap-4 my-4'>
             {
-              dataFilter.map(el => {
+              dataFilter[0] ? dataFilter.map(el => {
                 return(
                   <CartFeature 
                     key = {el._id}
@@ -51,7 +57,9 @@ const AllProduct = ({heading}) => {
                     price= {el.price}
                   />
                 )
-              })
+              }) 
+              :
+              loadingArrayFeature.map(el =><CartFeature  loading="loading..."/>)  
             }
           </div>
         </div>
