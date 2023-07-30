@@ -42,10 +42,12 @@ const Header = () => {
             <Link to={"contact"}>Contact</Link>
           </nav>
           <div className="relative text-2xl text-slate-600">
+            <Link to={"cart"} >
             <HiShoppingCart />
             <div className="absolute -top-2 -right-2 text-white bg-green-500 h-5 w-3 rounded-full m-0 p-0 text-sm text-center ">
               0
             </div>
+            </Link>
           </div>
           <div className="text-slate-600 cursor-pointer" onClick={handleShowMenu}>
             <div className="text-2xl w-8 h-8 rounded-full overflow-hidden drop-shadow-md">
