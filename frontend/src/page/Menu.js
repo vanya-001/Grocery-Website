@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import AllProduct from '../component/AllProduct'
 
 const Menu = () => {
   const {filterby} = useParams()
@@ -15,9 +16,9 @@ const Menu = () => {
 
   return (
     <div className='p-2 md:p-4'>
-      <div className='w-full max-w-3xl bg-white m-auto md:flex'>
-        <div className='max-w-sm overflow-hidden w-full p-5 '>
-          <img src={productDisplay.image} className='hover:scale-105 transition-all h-full' />
+      <div className='w-full max-w-4xl bg-white m-auto md:flex'>
+        <div className='w-60 min-h-[200px] max-w-sm overflow-hidden p-5'>  
+          <img src={productDisplay.image} className='hover:scale-105 transition-all h-full w-full' />
         </div>
         <div className='flex flex-col gap-1'>
           <h3 className='font-semibold text-slate-600 text-left capitalize text-2xl md:text-4xl'>{productDisplay.name}</h3>
@@ -33,6 +34,7 @@ const Menu = () => {
           </div>          
         </div>
       </div>
+      <AllProduct heading={"Related Product"}/>
     </div>
   )
 }

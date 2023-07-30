@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import CartFeature from '../component/CartFeature'
 import {GrFormNext, GrFormPrevious} from 'react-icons/gr'
 import FilterProduct from '../component/FilterProduct'
+import AllProduct from '../component/AllProduct'
 
 const Home = () => {
   const productData = useSelector((state)=>state.product.productList)
@@ -25,25 +26,8 @@ const Home = () => {
     slideProductRef.current.scrollLeft -= 925
   }
 
-  const categoryList = [...new Set(productData.map(el => el.category))]
-  console.log(categoryList) 
-
-  //filter data
-  const [filterBy, setFilterBy] = useState("")
-  const [dataFilter, setDataFilter] = useState([])
-
-  useEffect(()=>{
-    setDataFilter(productData)
-  },[productData])
-
-  const handleFilterProduct = (category) =>{
-    const filter = productData.filter(el => el.category.toLowerCase() === category.toLowerCase())
-    setDataFilter(() =>{
-      return[
-        ...filter
-      ]
-    })
-  }
+  
+  // console.log(categoryList) 
 
   return (
     <div className='p-2 md:p-4'>
@@ -65,6 +49,7 @@ const Home = () => {
               return(
                 <HomeCart
                   key = {el._id}
+                  id= {el._id}
                   image = {el.image}
                   name = {el.name}
                   price = {el.price}
@@ -113,36 +98,8 @@ const Home = () => {
             }
           </div>
         </div>
-
-        <div className='my-5'>
-          <h2 className='font-bold text-2xl text-green-700 mb-4'>Fresh Your Product</h2>
-
-          <div className='flex gap-4 justify-center overflow-scroll scrollbar-none cursor-pointer'>
-            {
-              categoryList[0] && categoryList.map(el => {
-                return(
-                  <FilterProduct category={el} onClick={()=> handleFilterProduct(el)} />
-                )
-              })
-            }
-          </div>
-          <div className='flex flex-wrap justify-center gap-4 my-4'>
-            {
-              dataFilter.map(el => {
-                return(
-                  <CartFeature 
-                    key = {el._id}
-                    id = {el._id}
-                    image = {el.image}
-                    name = {el.name}
-                    category= {el.category}
-                    price= {el.price}
-                  />
-                )
-              })
-            }
-          </div>
-        </div>
+            <AllProduct heading={"Your Fresh Products"}/>
+        
     </div>
   )
 }

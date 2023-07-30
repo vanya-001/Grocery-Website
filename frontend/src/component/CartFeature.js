@@ -6,7 +6,7 @@ const CartFeature = ({image, name, price, category, loading, id}) => {
     <div className='w-full min-w-[200px] max-w-[200px] bg-white hover:shadow-lg drop-shadow-lg px-4 pt-5 cursor-pointer flex flex-col'>
         {
             image ? <>
-            <Link to={`menu/${id}`} >
+            <Link to={`/menu/${id}`} onClick={() => window.scrollTo({top: "0", behavious: "smooth"})} >
             <div className='h-28 flex flex-col justify-center items-center'>
                 <img src={image} className='h-full' />
             </div>
@@ -20,8 +20,7 @@ const CartFeature = ({image, name, price, category, loading, id}) => {
             :
             <div className='min-h-[150px] flex justify-center items-center'>
                 <p>{loading}</p>
-            </div>
-            
+            </div>            
         }
     </div>
     
