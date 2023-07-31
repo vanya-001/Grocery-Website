@@ -1,9 +1,19 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { addCartItem } from '../redux/productSlice'
+import {useDispatch} from 'react-redux'
 
 const CartFeature = ({image, name, price, category, loading, id}) => {
+  const dispatch = useDispatch()
   const handleAddCart = (e) =>{
     e.stopPropagation()
+    dispatch(addCartItem({
+      _id : id,
+      name : name,
+      price : price,
+      category : category,
+      image : image
+    }))
   }
 
   return (
