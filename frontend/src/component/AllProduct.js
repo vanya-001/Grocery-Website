@@ -35,7 +35,10 @@ const AllProduct = ({heading}) => {
             {
               categoryList[0] ? categoryList.map(el => {
                 return(
-                  <FilterProduct category={el} onClick={()=> handleFilterProduct(el)} />
+                  <FilterProduct 
+                    category={el} 
+                    key={el}
+                    onClick={()=> handleFilterProduct(el)} />
                 )
               })
               :
@@ -59,7 +62,8 @@ const AllProduct = ({heading}) => {
                 )
               }) 
               :
-              loadingArrayFeature.map(el =><CartFeature  loading="loading..."/>)  
+              loadingArrayFeature.map((el, index) => (
+              <CartFeature key={index} loading="loading..."/>)  )
             }
           </div>
         </div>

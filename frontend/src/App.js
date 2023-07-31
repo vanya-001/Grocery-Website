@@ -16,7 +16,7 @@ function App() {
     (async()=>{
       const res = await fetch(`${process.env.REACT_APP_SERVER_DOMAIN}/product`)
       const resData = await res.json()
-      console.log(resData)
+      // console.log(resData)
       dispatch(setDataProduct(resData))
   })()
 },[])
