@@ -30,8 +30,7 @@ const CartProduct = ({id, name, image, category, price, qty, total}) => {
                 <button onClick={()=> dispatch(decreaseQty(id))} className='bg-green-400 py-1 mt-1 rounded hover:bg-green-500 p-1' ><AiOutlineMinus/></button>
                 </div>
                 <div className='flex items-center gap-2 font-bold '>
-                    <p>Total : </p>
-                    <p>{total}</p>
+                    <p>Total : ₹{total}</p>
                 </div>
             </div>
         </div>    
