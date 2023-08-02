@@ -2,17 +2,47 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import CartProduct from '../component/CartProduct'
 import emptyCartImage from '../image/Empty_cart.gif'
+import { toast } from 'react-hot-toast'
+import {loadStripe} from '@stripe/stripe-js'
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const productCartItem = useSelector((state) =>state.product.cartItem)
   console.log(productCartItem)
 
+  const user = useSelector(state => state.user)
+  const navigate = useNavigate()
+
   const totalPrice = productCartItem.reduce((acc,curr) => acc + parseInt(curr.total), 0)
 
   const totalQty = productCartItem.reduce((acc,curr) => acc + parseInt(curr.qty), 0)
 
-  const handlePayment = ()=>{
-    console.log("Payment Button")
+  const handlePayment = async()=>{
+
+    if(user.email){
+        
+        const stripePromise = await loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY)
+        const res = await fetch(`${process.env.REACT_APP_SERVER_DOMIN}/create-checkout-session`,{
+          method : "POST",
+          headers  : {
+            "content-type" : "application/json"
+          },
+          body  : JSON.stringify(productCartItem)
+        })
+        if(res.statusCode === 500) return;
+
+        const data = await res.json()
+        console.log(data)
+
+        toast("Redirect to payment Gateway...!")
+        stripePromise.redirectToCheckout({sessionId : data}) 
+    }
+    else{
+      toast("You have not Login!")
+      setTimeout(()=>{
+        navigate("/login")
+      },1000)
+    }
   }
 
   return (
