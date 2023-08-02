@@ -11,6 +11,10 @@ const Cart = () => {
 
   const totalQty = productCartItem.reduce((acc,curr) => acc + parseInt(curr.qty), 0)
 
+  const handlePayment = ()=>{
+    console.log("Payment Button")
+  }
+
   return (
     <>
       <div className='p-2 md:p-4 bg-white'>
@@ -48,7 +52,7 @@ const Cart = () => {
                 <p>Total Price</p>
                 <p className='ml-auto w-32 font-bold'><span className='text-red-500'>₹</span>{totalPrice}</p>
               </div>
-              <button className='bg-green-500 w-full text-lg font-bold py-2 text-white'>Payment</button>
+              <button className='bg-green-500 w-full text-lg font-bold py-2 text-white' onClick={handlePayment}>Payment</button>
             </div>
           </div>
           :

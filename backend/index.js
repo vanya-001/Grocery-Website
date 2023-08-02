@@ -117,4 +117,9 @@ app.get("/product", async(req, res) =>{
     res.send(JSON.stringify(data))
 })
 
+// Payment Gateway
+app.get('/payment', async(req, res)=>{
+    console.log(req.body)
+})
+
 app.listen(PORT, () => console.log("Server is running at port : " + PORT))
