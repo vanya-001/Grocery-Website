@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import CartProduct from '../component/CartProduct'
-import emptyCartImage from '../image/Empty_cart.gif'
+
 import { toast } from 'react-hot-toast'
 import {loadStripe} from '@stripe/stripe-js'
 import { useNavigate } from "react-router-dom";
@@ -41,7 +41,7 @@ const Cart = () => {
       toast("You have not Login!")
       setTimeout(()=>{
         navigate("/login")
-      },1000)
+      },500)
     }
   }
 
