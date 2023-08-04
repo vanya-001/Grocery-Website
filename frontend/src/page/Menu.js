@@ -11,7 +11,7 @@ const Menu = () => {
   const productData = useSelector(state => state.product.productList)
   
   const productDisplay = productData.filter(el => el._id === filterby)[0]
-  console.log(productDisplay)
+  // console.log(productDisplay)
 
   if (!productDisplay) {
     return <div>Loading...</div>;
