@@ -1,9 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import HomeCart from '../component/HomeCart'
 import { useSelector } from 'react-redux'
 import CartFeature from '../component/CartFeature'
 import {GrFormNext, GrFormPrevious} from 'react-icons/gr'
-import FilterProduct from '../component/FilterProduct'
 import AllProduct from '../component/AllProduct'
 
 const Home = () => {
