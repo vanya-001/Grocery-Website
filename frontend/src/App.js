@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 function App() {
   const dispatch = useDispatch()
 
-  const productData = useSelector((state) => state.product)
+  // const productData = useSelector((state) => state.product)
 
   useEffect(() =>{
     (async()=>{
@@ -17,7 +17,7 @@ function App() {
       const resData = await res.json()
       dispatch(setDataProduct(resData))
   })()
-},[])
+},[dispatch])
 
 
  return (
