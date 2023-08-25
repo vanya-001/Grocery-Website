@@ -31,7 +31,7 @@ const router = createBrowserRouter(
       <Route path = 'success' element = {<Success />} />
       <Route path = 'cancel' element = {<Cancel />} />
     </Route>
-  ), {basename:'/'}
+  ), {basename: process.env.PUBLIC_URL}
 )
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
