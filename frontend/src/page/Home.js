@@ -35,7 +35,7 @@ const Home = () => {
         <div className='md:w-1/2'>
           <div className='flex gap-3 bg-white w-36 px-2 items-center rounded-full'>
             <p className='text-sm font-medium text-slate-900'>Bike Delivery</p>
-            <img src="https://thenounproject.com/api/private/icons/4303170/edit/?backgroundShape=SQUARE&backgroundShapeColor=%23000000&backgroundShapeOpacity=0&exportSize=752&flipX=false&flipY=false&foregroundColor=%23000000&foregroundOpacity=1&imageFormat=png&rotation=0" className='h-7' />
+            <img src="https://thenounproject.com/api/private/icons/4303170/edit/?backgroundShape=SQUARE&backgroundShapeColor=%23000000&backgroundShapeOpacity=0&exportSize=752&flipX=false&flipY=false&foregroundColor=%23000000&foregroundOpacity=1&imageFormat=png&rotation=0" alt='Loading' className='h-7' />
           </div>
           <h2 className='text-4xl md:text-7xl font-bold py-3'>The Fastest Deliver in {" "}
           <span className='text-green-700 text-5xl md:text-7xl'>Your Home</span></h2>

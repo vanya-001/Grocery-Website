@@ -94,7 +94,7 @@ const Signup = () => {
         {/* <h1 className='text-center text-2xl  font-bold'>SignUp</h1> */}
 
         <div className='w-20 h-20 overflow-hidden drop-shadow-md shadow-md m-auto relative'>
-            <img src={data.image ? data.image : SignupImage} className='w-full h-full object-cover' /> 
+            <img src={data.image ? data.image : SignupImage} alt='Sign Up' className='w-full h-full object-cover' /> 
 
             <label htmlFor='profileImage'>
             <div className='absolute bottom-0 h-1/3 bg-slate-500 bg-opacity-60  text-white w-full text-center'>

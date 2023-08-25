@@ -9,7 +9,7 @@ const HomeCart = ({name, image, category, price, loading, id}) => {
           <>
             <Link to={`/menu/${id}`} onClick={() => window.scrollTo({top: "0", behavious: "smooth"})} >
             <div className='w-40 min-h-[200px]'>
-              <img src={image} className='h-full w-full' />
+              <img src={image} alt={name} className='h-full w-full' />
             </div>
             <h3 className='font-semibold text-slate-600 text-center capitalize text-lg'>{name}</h3>
             <p className='text-left text-slate-500 font-m'>{category}</p>
