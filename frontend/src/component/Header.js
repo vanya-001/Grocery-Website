@@ -32,7 +32,7 @@ const Header = () => {
       <div className="flex items-center h-full justify-between">
         <Link to={""}>
           <div className="h-15">
-            <img src={logo} className="h-20 " />
+            <img src={logo} alt='QuickPick' className="h-20 " />
           </div>
         </Link>
 
@@ -53,7 +53,7 @@ const Header = () => {
           </div>
           <div className="text-slate-600 cursor-pointer" onClick={handleShowMenu}>
             <div className="text-2xl w-8 h-8 rounded-full overflow-hidden drop-shadow-md">
-              {userData.image ? <img src={userData.image} className="h-full w-full"/> : <HiOutlineUserCircle />}              
+              {userData.image ? <img src={userData.image} alt='User' className="h-full w-full"/> : <HiOutlineUserCircle />}              
             </div>
             {showMenu && (
               <div className="absolute right-2 bg-white py-2 shadow drop-shadow-md flex flex-col min-w-[120px] text-center">
