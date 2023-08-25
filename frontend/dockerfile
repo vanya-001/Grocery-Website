@@ -1,21 +1,27 @@
-# Dockerfile for React client
+FROM mcr.microsoft.com/windows/servercore:1803 as installer
 
-# Build react client
-FROM mcr.microsoft.com/windows/servercore:ltsc2019
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop';$ProgressPreference='silentlyContinue';"]
 
-# Working directory be app
+RUN Invoke-WebRequest -OutFile nodejs.zip -UseBasicParsing "https://nodejs.org/dist/v12.4.0/node-v12.4.0-win-x64.zip"; `
+Expand-Archive nodejs.zip -DestinationPath C:\; `
+Rename-Item "C:\\node-v12.4.0-win-x64" c:\nodejs
+
+FROM mcr.microsoft.com/windows/nanoserver:1803
+
+WORKDIR C:\nodejs
+COPY --from=installer C:\nodejs\ .
+RUN SETX PATH C:\nodejs
+RUN npm config set registry https://registry.npmjs.org/
+
 WORKDIR /app
 
-COPY package*.json ./
+# install and cache app dependencies
+COPY frontend/src/package.json /app/src/WebSpa/package.json
 
-###  Installing dependencies
-RUN curl -sL https://nodejs.org/dist/latest/node-setup.msi -o node-setup.msi
-RUN msiexec /i node-setup.msi
-RUN npm install --silent
+WORKDIR /app/src/WebSpa
+RUN npm install 
+# add app
+COPY . /app
 
-# copy local files to app folder
-COPY . .
-
-EXPOSE 3000
-
-CMD ["npm","start"]
+# start app
+CMD cd /app/src/WebSpa && ng serve --host 0.0.0.0
