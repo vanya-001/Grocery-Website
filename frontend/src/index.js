@@ -31,7 +31,7 @@ const router = createBrowserRouter(
       <Route path = 'success' element = {<Success />} />
       <Route path = 'cancel' element = {<Cancel />} />
     </Route>
-  ), {basename:'https://vanya-001.github.io/Grocery-Website'}
+  ), {basename:'/'}
 )
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
