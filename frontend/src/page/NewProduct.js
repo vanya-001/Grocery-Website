@@ -92,7 +92,7 @@ const NewProduct = () => {
         <label htmlFor='image'>Image
         <div className='h-full w-full bg-green-200 rounded flex items-center justify-center cursor-pointer'>
           {
-            data.image ? <img src={data.image} className='h-full w-full rounded'/> : <span className='text-8xl'><BsCloudUpload/></span>
+            data.image ? <img src={data.image} alt='Loading' className='h-full w-full rounded'/> : <span className='text-8xl'><BsCloudUpload/></span>
           }
         <input type='file' accept='image/*' id='image' className='hidden' onChange={uploadImage}/>
         </div>
