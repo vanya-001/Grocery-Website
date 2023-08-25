@@ -1,4 +1,4 @@
-3FROM mcr.microsoft.com/windows/servercore:1803 as installer
+FROM mcr.microsoft.com/windows/servercore:1803 as installer
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop';$ProgressPreference='silentlyContinue';"]
 
