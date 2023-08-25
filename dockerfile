@@ -2,7 +2,7 @@
 FROM node:14 AS frontend
 
 # Set the working directory for the frontend
-WORKDIR /app/frontend
+WORKDIR ./frontend
 
 # Copy the frontend package.json and package-lock.json
 COPY frontend/package.json frontend/package-lock.json ./
@@ -20,7 +20,7 @@ RUN npm run build
 FROM node:14 AS backend
 
 # Set the working directory for the backend
-WORKDIR /app/backend
+WORKDIR ./backend
 
 # Copy the backend package.json and package-lock.json
 COPY backend/package.json backend/package-lock.json ./
@@ -35,13 +35,13 @@ COPY backend/ ./
 FROM node:14
 
 # Create app directory
-WORKDIR /app
+WORKDIR ./
 
 # Copy the built frontend from the frontend stage
-COPY --from=frontend /app/frontend/build ./frontend
+COPY --from=frontend ./frontend/build ./frontend
 
 # Copy the backend code from the backend stage
-COPY --from=backend /app/backend ./
+COPY --from=backend ./backend ./
 
 # Expose backend port
 EXPOSE 5000
