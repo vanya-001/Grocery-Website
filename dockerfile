@@ -20,5 +20,5 @@ FROM node:14
 WORKDIR /app
 # Copy built artifacts from frontend and backend stages
 COPY --from=frontend /home/ubuntu/Grocery-Website/frontend/build ./frontend
-COPY --from=backend /home/ubuntu/Grocery-Website/backend ./
+COPY --from=backend /home/ubuntu/Grocery-Website/backend ./backend
 EXPOSE 5000
