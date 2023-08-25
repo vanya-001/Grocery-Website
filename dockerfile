@@ -2,7 +2,7 @@
 FROM node:14 AS frontend
 
 # Set the working directory for the frontend
-WORKDIR Grocery-Website/frontend
+WORKDIR /app/frontend
 
 # Copy the frontend package.json and package-lock.json
 COPY frontend/package.json frontend/package-lock.json ./
@@ -20,7 +20,7 @@ RUN npm run build
 FROM node:14 AS backend
 
 # Set the working directory for the backend
-WORKDIR Grocery-Website/backend
+WORKDIR /app/backend
 
 # Copy the backend package.json and package-lock.json
 COPY backend/package.json backend/package-lock.json ./
@@ -29,19 +29,19 @@ COPY backend/package.json backend/package-lock.json ./
 RUN npm install
 
 # Copy the rest of the backend code
-COPY backend/ ./
+COPY backend/ ./  # Remove the extra dot at the end
 
 # Stage 3: Combine frontend and backend
 FROM node:14
 
 # Create app directory
-WORKDIR Grocery-Website/
+WORKDIR /app
 
 # Copy the built frontend from the frontend stage
-COPY --from=frontend ./frontend/build ./frontend
+COPY --from=frontend /app/frontend/build ./frontend
 
 # Copy the backend code from the backend stage
-COPY --from=backend ./backend ./
+COPY --from=backend /app/backend ./
 
 # Expose backend port
 EXPOSE 5000
