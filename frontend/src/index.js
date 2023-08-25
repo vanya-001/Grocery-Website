@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
+import { BrowserRouter, createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
 import Home from '../src/page/Home'
 import About from '../src/page/About'
 import Contact from '../src/page/Contact'
@@ -31,9 +31,8 @@ const router = createBrowserRouter(
       <Route path = 'success' element = {<Success />} />
       <Route path = 'cancel' element = {<Cancel />} />
     </Route>
-  )
+  ), {basename:'/'}
 )
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store = {store}>
