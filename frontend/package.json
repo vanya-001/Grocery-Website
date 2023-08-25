@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://vanya-001.github.io/Grocey-Website",
+  "homepage": "https://vanya-001.github.io/Grocery-Website",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
     "@stripe/react-stripe-js": "^2.1.1",
