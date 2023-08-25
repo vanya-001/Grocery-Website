@@ -1,21 +1,24 @@
+# Build frontend stage
 FROM node:14 AS frontend
-FROM node:14 AS backend
-
 WORKDIR /home/ubuntu/Grocery-Website/frontend
-COPY frontend/package.json frontend/package-lock.json ./
+# Copy necessary files and build the frontend
+COPY ./frontend/package.json ./frontend/package-lock.json ./
 RUN npm install
-COPY frontend/ ./
+COPY ./frontend ./
 RUN npm run build
 
+# Build backend stage
+FROM node:14 AS backend
 WORKDIR /home/ubuntu/Grocery-Website/backend
-COPY backend/package.json backend/package-lock.json ./
+# Copy necessary files and build the backend
+COPY ./backend/package.json ./backend/package-lock.json ./
 RUN npm install
-COPY backend/ ./
+COPY ./backend ./
 
+# Main image
 FROM node:14
-
 WORKDIR /app
+# Copy built artifacts from frontend and backend stages
 COPY --from=frontend /home/ubuntu/Grocery-Website/frontend/build ./frontend
-COPY --from=backend /home/ubuntu/Grocery-Website/backend ./
-EXPOSE 5000
-CMD ["npm", "start"]
+COPY --from=backend /home/ubuntu/Grocery-Website/backend ./
+EXPOSE 5000
