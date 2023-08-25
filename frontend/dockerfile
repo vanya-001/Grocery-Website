@@ -1,15 +1,16 @@
 # Dockerfile for React client
 
 # Build react client
-FROM stefanscherer/node-windows
+FROM mcr.microsoft.com/windows/servercore:ltsc2019
 
 # Working directory be app
-WORKDIR /usr/src/app
+WORKDIR /app
 
 COPY package*.json ./
 
 ###  Installing dependencies
-
+RUN curl -sL https://nodejs.org/dist/latest/node-setup.msi -o node-setup.msi
+RUN msiexec /i node-setup.msi
 RUN npm install --silent
 
 # copy local files to app folder
