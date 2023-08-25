@@ -72,7 +72,7 @@ const Login = () => {
         {/* <h1 className='text-center text-2xl  font-bold'>SignUp</h1> */}
 
         <div className='w-70 h-45 overflow-hidden'>
-            <img src={SignupImage} className='w-full h-full object-cover' />
+            <img src={SignupImage} alt='Login' className='w-full h-full object-cover' />
         </div>
         <form className='w-full py-3' onSubmit={handleSubmit}>
             <label htmlFor='email'>Email</label>

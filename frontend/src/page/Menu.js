@@ -30,7 +30,7 @@ const Menu = () => {
     <div className='p-2 md:p-4'>
       <div className='w-full max-w-4xl bg-white m-auto md:flex'>
         <div className='w-60 min-h-[200px] max-w-sm overflow-hidden p-5'>  
-          <img src={productDisplay.image} className='hover:scale-105 transition-all h-full w-full' />
+          <img src={productDisplay.image} alt={productDisplay.name} className='hover:scale-105 transition-all h-full w-full' />
         </div>
         <div className='flex flex-col gap-1'>
           <h3 className='font-semibold text-slate-600 text-left capitalize text-2xl md:text-4xl'>{productDisplay.name}</h3>
