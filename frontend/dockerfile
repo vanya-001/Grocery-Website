@@ -22,6 +22,6 @@ WORKDIR /app/src/WebSpa
 RUN npm install 
 # add app
 COPY . /app
-
+EXPOSE 3000
 # start app
-CMD cd /app/src/WebSpa && ng serve --host 0.0.0.0
+CMD cd /app/src/WebSpa && ["npm","start"]
