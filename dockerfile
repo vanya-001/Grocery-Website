@@ -1,38 +1,46 @@
-# Use the official Node.js image as the base image for both frontend and backend
+# Stage 1: Build the frontend
 FROM node:14 AS frontend
-FROM node:14 AS backend
 
-# Set the working directory for frontend and copy the frontend package.json and package-lock.json
+# Set the working directory for the frontend
 WORKDIR /app/frontend
+
+# Copy the frontend package.json and package-lock.json
 COPY frontend/package.json frontend/package-lock.json ./
 
 # Install frontend dependencies
 RUN npm install
 
-# Set the working directory for backend and copy the backend package.json and package-lock.json
+# Copy the rest of the frontend code
+COPY frontend/ ./
+
+# Build the frontend
+RUN npm run build
+
+# Stage 2: Build the backend
+FROM node:14 AS backend
+
+# Set the working directory for the backend
 WORKDIR /app/backend
+
+# Copy the backend package.json and package-lock.json
 COPY backend/package.json backend/package-lock.json ./
 
 # Install backend dependencies
 RUN npm install
 
-# Copy the rest of the frontend and backend code
-WORKDIR /app
-COPY . .
+# Copy the rest of the backend code
+COPY backend/ ./
 
-# Build the frontend
-RUN cd frontend && npm run build
-
-# Combine frontend and backend images
+# Stage 3: Combine frontend and backend
 FROM node:14
 
 # Create app directory
 WORKDIR /app
 
-# Copy the built frontend from the previous stage
+# Copy the built frontend from the frontend stage
 COPY --from=frontend /app/frontend/build ./frontend
 
-# Copy the backend code from the previous stage
+# Copy the backend code from the backend stage
 COPY --from=backend /app/backend ./
 
 # Expose backend port
