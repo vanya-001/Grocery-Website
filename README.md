@@ -1,4 +1,4 @@
-# Grocery-Website
+# QuickPick Grocery-Website
 Link - https://vanya-001.github.io/Grocery-Website/
 
 # Home Page
