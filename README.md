@@ -6,3 +6,6 @@ Link - https://vanya-001.github.io/Grocery-Website/
 
 # Products
 ![Screenshot (14)](https://github.com/vanya-001/Grocery-Website/assets/115103924/aba2c961-4df8-4176-8542-bb45c5d77ec3)
+
+# Cart
+![Screenshot (15)](https://github.com/vanya-001/Grocery-Website/assets/115103924/5a128902-685d-4739-908a-3735b34acddd)
